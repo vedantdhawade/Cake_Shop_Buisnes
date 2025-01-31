@@ -4,6 +4,8 @@ import express from "express";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import userRouter from "./routers/user.route.js";
+import CategoryRouter from "./routers/category.route.js";
+import productRouter from "./routers/product.route.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,6 +18,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/category", CategoryRouter);
+app.use("/api/product", productRouter);
 
 connectDB()
   .then(() => {
