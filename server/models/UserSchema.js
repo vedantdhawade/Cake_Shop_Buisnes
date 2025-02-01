@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
+  image: {
+    type: String,
+    required: false,
+  },
   firstname: {
     type: String,
     required: true,
@@ -20,6 +24,23 @@ const UserSchema = new mongoose.Schema({
   confirmpassword: {
     type: String,
     required: true,
+  },
+  address_details: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "address",
+    },
+  ],
+  shopping_cart: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "cartProduct",
+    },
+  ],
+  role: {
+    type: String,
+    enum: ["ADMIN", "USER"],
+    default: "USER",
   },
 });
 
