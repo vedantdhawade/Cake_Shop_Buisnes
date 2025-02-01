@@ -1,5 +1,7 @@
 import User from "../models/UserSchema.js";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
+
 import generatedAccessToken from "../utils/generateAccesstoken.js";
 import uploadImageClodinary from "../utils/UploadImageCloud.js";
 // Controller for register user
@@ -104,6 +106,7 @@ export const login = async (req, res) => {
       data: {
         accessToken,
       },
+      role: user.role,
     });
   } catch (error) {
     console.log("Login Error : ", error);
@@ -217,5 +220,37 @@ export const updateUser = async (req, res) => {
     });
   } catch (error) {
     console.log("Eroor in Update User : ", error);
+  }
+};
+
+// get User details using token
+export const getUserDetails = async (req, res) => {
+  const { token } = req.body;
+  try {
+    const decoded = jwt.verify(token, process.env.JWTKEY);
+    if (!decoded) {
+      return res.status(500).json({
+        message: "Error Getting User Data",
+        success: false,
+        error: true,
+      });
+    }
+
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+        error: true,
+        sucess: false,
+      });
+    }
+    return res.status(200).json({
+      message: "User Data",
+      success: true,
+      error: false,
+      data: user,
+    });
+  } catch (error) {
+    console.log("Error in getUserDetails :", error);
   }
 };

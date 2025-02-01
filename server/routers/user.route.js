@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getUserDetails,
   login,
   logout,
   register,
@@ -20,6 +21,8 @@ userRouter.put(
   upload.single("avatar"),
   uploadAvatar
 );
+userRouter.post("/getuser", AuthMiddleware, getUserDetails);
+
 userRouter.put("/update", AuthMiddleware, updateUser);
 
 export default userRouter;
