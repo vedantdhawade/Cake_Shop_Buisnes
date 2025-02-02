@@ -3,12 +3,13 @@ import CategoryModel from "../models/CategorySchema.js";
 // Add Category
 export const addCategory = async (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name) {
-      return res.status(400).json({ message: "Name is required" });
+    const { name, image } = req.body;
+    if (!name || !image) {
+      return res.status(400).json({ message: "All fields are required" });
     }
     const category = new CategoryModel({
       name,
+      image,
     });
     const newcategory = await category.save();
     if (newcategory) {
@@ -22,6 +23,7 @@ export const addCategory = async (req, res) => {
       message: "Category not Created",
       error: true,
       success: false,
+      data: newcategory,
     });
   } catch (error) {
     console.log("Error in addCategory ", error);

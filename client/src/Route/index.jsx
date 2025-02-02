@@ -6,13 +6,13 @@ import Blog from "../pages/Blog";
 import Shop from "../pages/Shop";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import AdminDashboard from "../pages/AdminDashboard";
 import AdminLayout from "../layouts/AdminLayout";
 import CheckAdmin from "../layouts/CheckAdmin";
 import UserLayout from "../layouts/UserLayout";
 import UpdateProfile from "../pages/UpdateProfile";
 import TrackOrder from "../pages/TrackOrder";
 import Workshops from "../pages/Workshop";
+import AdminCreateCategory from "../pages/AddCatgeory";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             <AdminLayout />
           </CheckAdmin>
         ),
-        children: [{ path: "dashboard", element: <AdminDashboard /> }],
+        children: [{ path: "addcategory", element: <AdminCreateCategory /> }],
       },
     ],
   },
