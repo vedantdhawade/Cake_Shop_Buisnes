@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { removeUserDetails } from "../store/userSlice";
+import toast from "react-hot-toast";
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [token, setToken] = useState(null);
+  const user = useSelector((state) => state.user);
   const storedToken = localStorage.getItem("token");
-  useEffect(() => {
-    // Get the token from localStorage when the component mounts
+  const dispatch = useDispatch();
 
-    // Set token based on the retrieved value
+  useEffect(() => {
     if (!storedToken) {
       setToken(false);
     } else {
       setToken(true);
     }
-  }, [token, storedToken]); // Empty dependency array to run only on mount
+  }, [token, storedToken]);
+
+  const handleLogout = () => {
+    dispatch(removeUserDetails());
+    localStorage.removeItem("token");
+    navigate("/login");
+    toast.success("Logout Successfuly");
+  };
+  console.log(user);
+
   return (
     <nav className="bg-[#243a6e] text-white py-4 px-10">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center w-full">
@@ -50,16 +63,29 @@ export default function Navbar() {
                   : "opacity-0 translate-y-2 scale-95 pointer-events-none"
               }`}
             >
-              <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                My Account
-              </a>
+              {token ? (
+                user.role === "USER" ? (
+                  <Link
+                    to={"/dashboard"}
+                    className="block px-4 py-2 hover:bg-gray-200"
+                  >
+                    My Account
+                  </Link>
+                ) : (
+                  <Link
+                    to={"/account"}
+                    className="block px-4 py-2 hover:bg-gray-200"
+                  >
+                    Manage Buisness
+                  </Link>
+                )
+              ) : null}
               {token ? (
                 <Link
                   to={"login"}
                   className="block px-4 py-2 hover:bg-gray-200"
                   onClick={() => {
-                    localStorage.removeItem("token");
-                    setToken(null);
+                    handleLogout();
                   }}
                 >
                   logout

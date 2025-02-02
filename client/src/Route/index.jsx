@@ -6,36 +6,54 @@ import Blog from "../pages/Blog";
 import Shop from "../pages/Shop";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AdminDashboard from "../pages/AdminDashboard";
+import AdminLayout from "../layouts/AdminLayout";
+import CheckAdmin from "../layouts/CheckAdmin";
+import UserLayout from "../layouts/UserLayout";
+import UpdateProfile from "../pages/UpdateProfile";
+import TrackOrder from "../pages/TrackOrder";
+import Workshops from "../pages/Workshop";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      { path: "", element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "shop", element: <Shop /> },
+      { path: "blog", element: <Blog /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
       {
-        path: "",
-        element: <Home />,
+        path: "/dashboard",
+        element: <UserLayout />,
+        children: [
+          {
+            path: "updateprofile",
+            element: <UpdateProfile />,
+          },
+          {
+            path: "trackorder",
+            element: <TrackOrder />,
+          },
+          {
+            path: "workshop",
+            element: <Workshops />,
+          },
+        ],
       },
       {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/shop",
-        element: <Shop />,
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
+        path: "admin",
+        element: (
+          <CheckAdmin>
+            <AdminLayout />
+          </CheckAdmin>
+        ),
+        children: [{ path: "dashboard", element: <AdminDashboard /> }],
       },
     ],
   },
 ]);
+
 export default router;

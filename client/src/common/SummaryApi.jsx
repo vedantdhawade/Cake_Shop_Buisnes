@@ -8,4 +8,8 @@ export const SummaryApi = {
     url: "/api/user/login",
     method: "post",
   },
+  getUser: {
+    url: "/api/user/getuser",
+    method: "post",
+  },
 };
