@@ -34,7 +34,7 @@ export const addCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
   try {
-    const { name, id } = req.body;
+    const { name, id, image } = req.body;
 
     // Find the category
     const category = await CategoryModel.findById(id);
@@ -50,7 +50,7 @@ export const updateCategory = async (req, res) => {
     const data = await CategoryModel.findByIdAndUpdate(
       id,
       { name: name },
-      { new: true }
+      { image: image }
     );
     if (data) {
       return res.status(200).json({
@@ -92,9 +92,25 @@ export const deleteCategory = async (req, res) => {
     if (data) {
       return res.status(200).json({
         message: "Category deleted successfully",
+        success: true,
+        error: false,
       });
     }
   } catch (error) {
     console.log("Error in deleteCategory : ", error);
+  }
+};
+
+export const getcategories = async (req, res) => {
+  try {
+    const data = await CategoryModel.find();
+    return res.status(200).json({
+      message: "Categories Data",
+      success: true,
+      error: false,
+      data: data,
+    });
+  } catch (error) {
+    console.log("Error in get Categories : ", error);
   }
 };

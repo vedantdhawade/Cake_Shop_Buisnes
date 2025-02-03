@@ -1,3 +1,5 @@
+import { getcategories } from "../../../server/controllers/Category.controller";
+
 export const baseUrl = "http://localhost:5000";
 export const SummaryApi = {
   register: {
@@ -23,5 +25,13 @@ export const SummaryApi = {
   uploadImage: {
     url: "/api/file/upload",
     method: "post",
+  },
+  getcategories: {
+    url: "/api/category/getcategory",
+    method: "get",
+  },
+  deletecategories: {
+    url: "/api/category/delete-category",
+    method: "delete",
   },
 };

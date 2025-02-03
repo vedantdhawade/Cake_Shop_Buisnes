@@ -26,7 +26,6 @@ export default function Navbar() {
     navigate("/login");
     toast.success("Logout Successfuly");
   };
-  console.log(user);
 
   return (
     <nav className="bg-[#243a6e] text-white py-4 px-10">
