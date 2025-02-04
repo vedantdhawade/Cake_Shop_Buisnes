@@ -13,6 +13,7 @@ import UpdateProfile from "../pages/UpdateProfile";
 import TrackOrder from "../pages/TrackOrder";
 import Workshops from "../pages/Workshop";
 import AdminCreateCategory from "../pages/AddCatgeory";
+import AdminProduct from "../pages/AdminProduct";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,13 @@ const router = createBrowserRouter([
             <AdminLayout />
           </CheckAdmin>
         ),
-        children: [{ path: "addcategory", element: <AdminCreateCategory /> }],
+        children: [
+          { path: "addcategory", element: <AdminCreateCategory /> },
+          {
+            path: "addproducts",
+            element: <AdminProduct />,
+          },
+        ],
       },
     ],
   },

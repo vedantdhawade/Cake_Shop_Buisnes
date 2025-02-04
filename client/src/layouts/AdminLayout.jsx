@@ -37,6 +37,7 @@ const AdminLayout = () => {
             }`}
             onClick={() => {
               setActiveTab("Add Products");
+              navigate("addproducts");
             }}
           >
             Add Products

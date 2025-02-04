@@ -34,4 +34,16 @@ export const SummaryApi = {
     url: "/api/category/delete-category",
     method: "delete",
   },
+  addProduct: {
+    url: "/api/product/add-product",
+    method: "post",
+  },
+  getProducts: {
+    url: "/api/product/get-product",
+    method: "get",
+  },
+  updateProduct: {
+    url: "/api/product/update-product",
+    method: "put",
+  },
 };
