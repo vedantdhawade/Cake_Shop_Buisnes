@@ -50,6 +50,7 @@ const AdminLayout = () => {
             }`}
             onClick={() => {
               setActiveTab("Add Blogs");
+              navigate("addblogs");
             }}
           >
             Add Blogs
@@ -74,6 +75,7 @@ const AdminLayout = () => {
             }`}
             onClick={() => {
               setActiveTab("Check Orders");
+              navigate("manageorders");
             }}
           >
             Check Orders

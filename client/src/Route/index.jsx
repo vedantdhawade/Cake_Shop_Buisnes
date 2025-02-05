@@ -14,6 +14,8 @@ import TrackOrder from "../pages/TrackOrder";
 import Workshops from "../pages/Workshop";
 import AdminCreateCategory from "../pages/AddCatgeory";
 import AdminProduct from "../pages/AdminProduct";
+import AddBlog from "../pages/AdminBlogPage";
+import CheckOrders from "../pages/AdminManageOrders";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
           {
             path: "addproducts",
             element: <AdminProduct />,
+          },
+          {
+            path: "addblogs",
+            element: <AddBlog />,
+          },
+          {
+            path: "manageorders",
+            element: <CheckOrders />,
           },
         ],
       },

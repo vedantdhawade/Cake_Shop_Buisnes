@@ -1,6 +1,5 @@
-import { getcategories } from "../../../server/controllers/Category.controller";
-
 export const baseUrl = "http://localhost:5000";
+
 export const SummaryApi = {
   register: {
     url: "/api/user/register",
@@ -44,6 +43,31 @@ export const SummaryApi = {
   },
   updateProduct: {
     url: "/api/product/update-product",
+    method: "put",
+  },
+  deleteProduct: {
+    url: "/api/product/delete-product",
+    method: "delete",
+  },
+  getBlogs: {
+    url: "api/blog/get-blog",
+    method: "get",
+  },
+  addBlog: {
+    url: "api/blog/add-blog",
+    method: "post",
+  },
+  deleteBlog: {
+    url: "api/blog/delete-blog",
+    method: "delete",
+  },
+  getOrders: {
+    url: "/api/order/orders",
+    method: "get",
+  },
+  updateOrderStatus: {
+    // Dynamic URL for updating order status
+    getUrl: (orderId) => `/api/order/orders/${orderId}/status`,
     method: "put",
   },
 };

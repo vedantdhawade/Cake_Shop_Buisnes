@@ -76,6 +76,25 @@ export default function AdminProduct() {
     setIsUpdateModalOpen(false);
   };
 
+  const handleDeleteProduct = async (id) => {
+    try {
+      console.log(id);
+      const response = await Axios({
+        ...SummaryApi.deleteProduct,
+        data: {
+          id: id,
+        },
+      });
+      if (response.data.success) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log("error in delete product", error);
+    }
+  };
+
   return (
     <div className="p-6 bg-pink-100 h-full">
       <div className="flex justify-between items-center mb-6">

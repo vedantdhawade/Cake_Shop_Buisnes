@@ -8,6 +8,8 @@ import CategoryRouter from "./routers/category.route.js";
 import productRouter from "./routers/product.route.js";
 import cookieParser from "cookie-parser";
 import uploadimage from "./routers/UploadImage.js";
+import BlogRouter from "./routers/Blog.route.js";
+import OrderRouter from "./routers/Orders.route.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,6 +26,8 @@ app.use("/api/user", userRouter);
 app.use("/api/category", CategoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/file", uploadimage);
+app.use("/api/blog", BlogRouter);
+app.use("/api/order", OrderRouter);
 
 connectDB()
   .then(() => {

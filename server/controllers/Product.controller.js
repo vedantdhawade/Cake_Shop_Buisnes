@@ -99,3 +99,26 @@ export const updateProduct = async (req, res) => {
     });
   }
 };
+
+// Controller for delete product
+
+export const deleteProduct = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Productmodel.findByIdAndDelete({ id });
+    if (!data) {
+      return res.status(400).json({
+        message: "No product deleted",
+        success: false,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: "Product deleted Successfully",
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error in Delete Product Controller : ", error);
+  }
+};
