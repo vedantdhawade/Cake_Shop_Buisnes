@@ -70,3 +70,12 @@ export const deleteBlog = async (req, res) => {
     console.log("Error In Delete Blog controller :", error);
   }
 };
+
+export const getLatestblog = async (req, res) => {
+  try {
+    const blogs = await BlogModel.find().sort({ createdAt: -1 }).limit(6); // Fetch latest 6 blogs
+    res.json(blogs);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching blogs", error });
+  }
+};

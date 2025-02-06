@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
-import About from "../pages/About";
 import Blog from "../pages/Blog";
 import Shop from "../pages/Shop";
 import Login from "../pages/Login";
@@ -16,6 +15,7 @@ import AdminCreateCategory from "../pages/AddCatgeory";
 import AdminProduct from "../pages/AdminProduct";
 import AddBlog from "../pages/AdminBlogPage";
 import CheckOrders from "../pages/AdminManageOrders";
+import AboutUs from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <Home /> },
-      { path: "about", element: <About /> },
+      { path: "about", element: <AboutUs /> },
       { path: "shop", element: <Shop /> },
       { path: "blog", element: <Blog /> },
       { path: "login", element: <Login /> },

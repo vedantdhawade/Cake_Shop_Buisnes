@@ -122,3 +122,14 @@ export const deleteProduct = async (req, res) => {
     console.log("Error in Delete Product Controller : ", error);
   }
 };
+
+export const getlatestProducts = async (req, res) => {
+  try {
+    const latestProducts = await Productmodel.find()
+      .sort({ createdAt: -1 })
+      .limit(4); // Get latest 4 products
+    res.json(latestProducts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

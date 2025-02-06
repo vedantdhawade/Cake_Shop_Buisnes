@@ -32,6 +32,7 @@ export default function AdminProduct() {
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getProducts();

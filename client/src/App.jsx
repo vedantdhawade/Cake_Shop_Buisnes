@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { setUser } from "./store/userSlice";
 import Axios from "./utils/Axios";
 import { SummaryApi } from "./common/SummaryApi";
+import NavbarBase from "./components/NavbarBase";
 
 function App() {
   const dispatch = useDispatch();

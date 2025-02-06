@@ -28,8 +28,12 @@ const NavbarBase = () => {
 
       {/* Menu (Desktop) */}
       <ul className="hidden md:flex gap-6 text-gray-800 font-medium">
-        <li className="hover:text-pink-400 cursor-pointer">HOME</li>
-        <li className="hover:text-pink-400 cursor-pointer">ABOUT</li>
+        <li className="hover:text-pink-400 cursor-pointer">
+          <Link to={"/"}>HOME</Link>
+        </li>
+        <li className="hover:text-pink-400 cursor-pointer">
+          <Link to={"/about"}>ABOUT</Link>
+        </li>
         <li className="hover:text-pink-400 cursor-pointer">PAGES</li>
         <li className="hover:text-pink-400 cursor-pointer">SHOP</li>
         <li className="hover:text-pink-400 cursor-pointer">BLOG</li>
@@ -80,13 +84,13 @@ const NavbarBase = () => {
               className="hover:text-pink-400 cursor-pointer flex justify-center"
               onClick={toggleMobileMenu}
             >
-              HOME
+              <Link to={"/"}>HOME</Link>
             </li>
             <li
               className="hover:text-pink-400 cursor-pointer flex justify-center"
               onClick={toggleMobileMenu}
             >
-              ABOUT
+              <Link to={"/about"}>ABOUT</Link>
             </li>
             <li
               className="hover:text-pink-400 cursor-pointer flex justify-center"

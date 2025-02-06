@@ -97,9 +97,6 @@ export default function Navbar() {
                   Login
                 </Link>
               )}
-              <a href="#" className="block px-4 py-2 hover:bg-gray-200">
-                Contact
-              </a>
             </div>
           </div>
         </div>
