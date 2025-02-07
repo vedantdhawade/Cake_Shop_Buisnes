@@ -34,9 +34,14 @@ const NavbarBase = () => {
         <li className="hover:text-pink-400 cursor-pointer">
           <Link to={"/about"}>ABOUT</Link>
         </li>
-        <li className="hover:text-pink-400 cursor-pointer">PAGES</li>
-        <li className="hover:text-pink-400 cursor-pointer">SHOP</li>
-        <li className="hover:text-pink-400 cursor-pointer">BLOG</li>
+
+        <li className="hover:text-pink-400 cursor-pointer">
+          {" "}
+          <Link to={"/shop"}>SHOP</Link>
+        </li>
+        <li className="hover:text-pink-400 cursor-pointer">
+          <Link to={"/blogs/allblog"}>BLOGS</Link>
+        </li>
         <li className="hover:text-pink-400 cursor-pointer">CONTACT</li>
       </ul>
 
@@ -92,12 +97,7 @@ const NavbarBase = () => {
             >
               <Link to={"/about"}>ABOUT</Link>
             </li>
-            <li
-              className="hover:text-pink-400 cursor-pointer flex justify-center"
-              onClick={toggleMobileMenu}
-            >
-              PAGES
-            </li>
+
             <li
               className="relative cursor-pointer flex justify-center"
               onClick={toggleMobileMenu}

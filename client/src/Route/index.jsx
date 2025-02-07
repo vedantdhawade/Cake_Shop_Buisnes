@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
-import Blog from "../pages/Blog";
-import Shop from "../pages/Shop";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AdminLayout from "../layouts/AdminLayout";
@@ -16,6 +14,10 @@ import AdminProduct from "../pages/AdminProduct";
 import AddBlog from "../pages/AdminBlogPage";
 import CheckOrders from "../pages/AdminManageOrders";
 import AboutUs from "../pages/About";
+import ProductsPage from "../pages/ProductsPage";
+import BlogPage from "../pages/Blog";
+import BlogsLayout from "../layouts/BlogsLayout";
+import DetailedBlogPage from "../pages/DetailedBlogPage";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +26,25 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       { path: "about", element: <AboutUs /> },
-      { path: "shop", element: <Shop /> },
-      { path: "blog", element: <Blog /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "shop", element: <ProductsPage /> },
+
+      {
+        path: "blogs",
+        element: <BlogsLayout />,
+        children: [
+          {
+            path: "allblog",
+            element: <BlogPage />,
+          },
+          {
+            path: ":id",
+            element: <DetailedBlogPage />,
+          },
+        ],
+      },
+
       {
         path: "/dashboard",
         element: <UserLayout />,

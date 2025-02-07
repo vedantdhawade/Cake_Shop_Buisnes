@@ -79,3 +79,25 @@ export const getLatestblog = async (req, res) => {
     res.status(500).json({ message: "Error fetching blogs", error });
   }
 };
+
+// get Single Blog
+export const getSingleBlog = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const data = await BlogModel.findById(id);
+
+    if (!data) {
+      return res.status(400).json({
+        message: "No Blog Found",
+        success: false,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      data: data,
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error in Single Blog Controller :", error);
+  }
+};

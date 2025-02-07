@@ -53,6 +53,10 @@ export const SummaryApi = {
     url: "api/blog/get-blog",
     method: "get",
   },
+  getsingleblog: {
+    url: "api/blog/get-single-blog",
+    method: "post",
+  },
   addBlog: {
     url: "api/blog/add-blog",
     method: "post",
@@ -66,7 +70,6 @@ export const SummaryApi = {
     method: "get",
   },
   updateOrderStatus: {
-    // Dynamic URL for updating order status
     getUrl: (orderId) => `/api/order/orders/${orderId}/status`,
     method: "put",
   },
