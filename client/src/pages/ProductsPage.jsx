@@ -5,6 +5,7 @@ import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
 import IntroPage from "../components/IntroPage";
 import NavbarBase from "../components/NavbarBase";
 import CartSidebar from "../components/CartComponent";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +16,8 @@ const ProductsPage = () => {
   const [ratings, setRatings] = useState({});
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,10 +31,21 @@ const ProductsPage = () => {
     setRatings((prevRatings) => ({ ...prevRatings, [productId]: rating }));
     console.log(`Product ${productId} rated:`, rating);
   };
+  const handleAddToCart = async (product) => {
+    try {
+      const response = await Axios.post("/api/user/add-to-cart", {
+        id: user._id, // The logged-in user's ID
+        productname: product.name,
+        price: product.price,
+      });
 
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-    setIsCartOpen(true);
+      if (response.status === 200) {
+        alert("Item added to cart successfully!");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add item to cart.");
+    }
   };
 
   return (
@@ -96,7 +110,6 @@ const ProductsPage = () => {
                 <option value="high-low">Price: High to Low</option>
               </select>
             </div>
-
             {/* Products List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-scroll max-h-[650px] p-2 border border-pink-300 rounded-lg">
               {products

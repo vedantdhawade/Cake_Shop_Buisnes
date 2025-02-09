@@ -73,4 +73,12 @@ export const SummaryApi = {
     getUrl: (orderId) => `/api/order/orders/${orderId}/status`,
     method: "put",
   },
+  getcart: {
+    url: "/api/user/getcart",
+    method: "post",
+  },
+  deletecart: {
+    url: "/api/user/deleteCart",
+    method: "delete",
+  },
 };

@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import uploadimage from "./routers/UploadImage.js";
 import BlogRouter from "./routers/Blog.route.js";
 import OrderRouter from "./routers/Orders.route.js";
+import Workshoprouter from "./routers/Workshop.route.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ app.use("/api/product", productRouter);
 app.use("/api/file", uploadimage);
 app.use("/api/blog", BlogRouter);
 app.use("/api/order", OrderRouter);
+app.use("/api/workshop", Workshoprouter);
 
 connectDB()
   .then(() => {

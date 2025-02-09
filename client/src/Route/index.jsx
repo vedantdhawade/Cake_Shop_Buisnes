@@ -18,6 +18,7 @@ import ProductsPage from "../pages/ProductsPage";
 import BlogPage from "../pages/Blog";
 import BlogsLayout from "../layouts/BlogsLayout";
 import DetailedBlogPage from "../pages/DetailedBlogPage";
+import CheckoutPage from "../pages/CheckOutPage";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
             element: <CheckOrders />,
           },
         ],
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
       },
     ],
   },

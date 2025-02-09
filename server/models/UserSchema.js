@@ -33,8 +33,8 @@ const UserSchema = new mongoose.Schema({
   ],
   shopping_cart: [
     {
-      type: mongoose.Schema.ObjectId,
-      ref: "cartProduct",
+      productname: String,
+      price: Number,
     },
   ],
   role: {

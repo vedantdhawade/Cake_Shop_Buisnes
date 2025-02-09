@@ -1,9 +1,12 @@
 import express from "express";
 import {
+  addToCart,
+  getCartItems,
   getUserDetails,
   login,
   logout,
   register,
+  removeFromCart,
   updateUser,
   uploadAvatar,
 } from "../controllers/User.controllers.js";
@@ -24,5 +27,11 @@ userRouter.put(
 userRouter.post("/getuser", AuthMiddleware, getUserDetails);
 
 userRouter.put("/update", AuthMiddleware, updateUser);
+
+userRouter.post("/add-to-cart", addToCart);
+
+userRouter.post("/getcart", AuthMiddleware, getCartItems);
+
+userRouter.delete("/deleteCart", AuthMiddleware, removeFromCart);
 
 export default userRouter;
