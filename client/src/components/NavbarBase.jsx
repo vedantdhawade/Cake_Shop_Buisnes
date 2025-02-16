@@ -48,7 +48,10 @@ const NavbarBase = () => {
           <li className="hover:text-pink-400 cursor-pointer">
             <Link to={"/blogs/allblog"}>BLOGS</Link>
           </li>
-          <li className="hover:text-pink-400 cursor-pointer">WORKSHOPS</li>
+          <li className="hover:text-pink-400 cursor-pointer">
+            {" "}
+            <Link to={"/workshop"}>WORKSHOPS</Link>
+          </li>
         </ul>
 
         {/* Icons */}

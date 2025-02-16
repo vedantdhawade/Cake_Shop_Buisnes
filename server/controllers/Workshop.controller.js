@@ -27,9 +27,11 @@ export const addWorkshop = async (req, res) => {
     });
 
     await newWorkshop.save();
-    res
-      .status(201)
-      .json({ message: "Workshop added successfully", workshop: newWorkshop });
+    res.status(201).json({
+      message: "Workshop added successfully",
+      success: true,
+      workshop: newWorkshop,
+    });
   } catch (error) {
     res.status(500).json({ message: "Error adding workshop", error });
   }

@@ -100,7 +100,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="text-center text-sm mt-10 border-t border-gray-600 pt-5">
-        © 2025 Bucker. Made with ❤️ By Vedant
+        © 2025 Cake Delights. Made with ❤️ By Prerana
       </div>
     </footer>
   );

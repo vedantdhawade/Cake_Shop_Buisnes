@@ -81,4 +81,16 @@ export const SummaryApi = {
     url: "/api/user/deleteCart",
     method: "delete",
   },
+  addworkshop: {
+    url: "/api/workshop/add-workshop",
+    method: "post",
+  },
+  getworkshop: {
+    url: "/api/workshop/workshops",
+    method: "get",
+  },
+  deleteworkshop: {
+    url: "/api/workshop/delete-workshop",
+    method: "delete",
+  },
 };

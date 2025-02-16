@@ -13,7 +13,7 @@ const AdminLayout = () => {
       {/* Sidebar */}
       <div className="w-1/4  bg-pink-100 shadow-lg p-5">
         <h2 className="text-xl font-bold mb-4 border border-black  hidden md:block p-4 rounded-md">
-          <Link to={"dashboard"}>Admin Dashboard</Link>
+          <Link to={"/"}>Admin Dashboard</Link>
         </h2>
         <ul className="space-y-3">
           <li
@@ -63,6 +63,7 @@ const AdminLayout = () => {
             }`}
             onClick={() => {
               setActiveTab("workshops");
+              navigate("workshop");
             }}
           >
             Schedule Workshops
@@ -88,6 +89,7 @@ const AdminLayout = () => {
             }`}
             onClick={() => {
               setActiveTab("Feedback");
+              navigate("feedback");
             }}
           >
             Feedback

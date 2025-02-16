@@ -6,6 +6,8 @@ import IntroPage from "../components/IntroPage";
 import NavbarBase from "../components/NavbarBase";
 import CartSidebar from "../components/CartComponent";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -18,6 +20,7 @@ const ProductsPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,11 +43,12 @@ const ProductsPage = () => {
       });
 
       if (response.status === 200) {
-        alert("Item added to cart successfully!");
+        toast.success("Item Added To Cart");
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("Failed to add item to cart.");
+      toast.error("Please Login");
+      navigate("/login");
     }
   };
 
@@ -80,7 +84,7 @@ const ProductsPage = () => {
               <input
                 type="range"
                 min="10"
-                max="400"
+                max="1000"
                 value={priceRange[1]}
                 onChange={(e) => setPriceRange([10, e.target.value])}
                 className="w-full"

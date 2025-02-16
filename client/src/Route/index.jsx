@@ -8,7 +8,6 @@ import CheckAdmin from "../layouts/CheckAdmin";
 import UserLayout from "../layouts/UserLayout";
 import UpdateProfile from "../pages/UpdateProfile";
 import TrackOrder from "../pages/TrackOrder";
-import Workshops from "../pages/Workshop";
 import AdminCreateCategory from "../pages/AddCatgeory";
 import AdminProduct from "../pages/AdminProduct";
 import AddBlog from "../pages/AdminBlogPage";
@@ -19,6 +18,9 @@ import BlogPage from "../pages/Blog";
 import BlogsLayout from "../layouts/BlogsLayout";
 import DetailedBlogPage from "../pages/DetailedBlogPage";
 import CheckoutPage from "../pages/CheckOutPage";
+import WorkshopPage from "../pages/WorkShop";
+import FeedbackPage from "../pages/Feedback";
+import UserWorkshopPage from "../pages/UserWorkshopPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "shop", element: <ProductsPage /> },
+      { path: "workshop", element: <UserWorkshopPage /> },
 
       {
         path: "blogs",
@@ -58,10 +61,6 @@ const router = createBrowserRouter([
             path: "trackorder",
             element: <TrackOrder />,
           },
-          {
-            path: "workshop",
-            element: <Workshops />,
-          },
         ],
       },
       {
@@ -84,6 +83,14 @@ const router = createBrowserRouter([
           {
             path: "manageorders",
             element: <CheckOrders />,
+          },
+          {
+            path: "workshop",
+            element: <WorkshopPage />,
+          },
+          {
+            path: "feedback",
+            element: <FeedbackPage />,
           },
         ],
       },
