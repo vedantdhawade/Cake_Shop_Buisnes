@@ -6,38 +6,37 @@ import { SummaryApi } from "../common/SummaryApi.jsx";
 
 export default function AdminProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [reload, setReload] = useState(false);
   const [products, setProducts] = useState({
     name: "",
     image: "",
     description: "",
     category: "",
-    rating: "",
     price: "",
     discount: "",
     size: "",
   });
-  const [updateProduct, setUpdateProduct] = useState({
-    id: "",
-    name: "",
-    image: "",
-    description: "",
-    category: "",
-    rating: "",
-    price: "",
-    discount: "",
-    size: "",
-  });
+
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [editing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getProducts();
     getCategories();
   }, [reload]);
+
+  const handleFileChange = async (e) => {
+    const image = e.target.files[0];
+    if (!image) return;
+    setLoading(true);
+    const response = await uploadImage(image);
+    if (response.data.success) {
+      toast.success(response.data.message);
+      setLoading(false);
+    }
+    setLoading(false);
+  };
 
   const getProducts = async () => {
     try {
@@ -57,24 +56,40 @@ export default function AdminProduct() {
     }
   };
 
-  const handleEditProduct = (product) => {
-    setUpdateProduct({ ...product, category: product.category?._id || "" });
-    setIsUpdateModalOpen(true);
-  };
-
-  const handleUpdateProduct = async () => {
-    console.log("Updated Product:", updateProduct);
-    const response = await Axios({
-      ...SummaryApi.updateProduct,
-      data: updateProduct,
-    });
-    if (response.data.success) {
-      toast.success(response.data.message);
-      setIsUpdateModalOpen(false);
-      setReload(true);
+  const handleAddProduct = async () => {
+    try {
+      const response = await Axios({
+        ...SummaryApi.addProduct,
+        data: products,
+      });
+      if (response.data.success) {
+        toast.success("Product Added Successfully");
+        setIsModalOpen(false);
+        setProducts({
+          name: "",
+          image: "",
+          description: "",
+          category: "",
+          price: "",
+          discount: "",
+          size: "",
+        });
+      } else {
+        toast.error("No Product Added ");
+        setIsModalOpen(false);
+        setProducts({
+          name: "",
+          image: "",
+          description: "",
+          category: "",
+          price: "",
+          discount: "",
+          size: "",
+        });
+      }
+    } catch (error) {
+      console.log("Error in Add products : ", error);
     }
-    toast.error(response.data.message);
-    setIsUpdateModalOpen(false);
   };
 
   const handleDeleteProduct = async (id) => {
@@ -103,7 +118,15 @@ export default function AdminProduct() {
         <button
           onClick={() => {
             setIsModalOpen(true);
-            setIsEditing(false);
+            setProducts({
+              name: "",
+              image: "",
+              description: "",
+              category: "",
+              price: "",
+              discount: "",
+              size: "",
+            });
           }}
           className="bg-black text-pink-300 px-4 py-2 rounded"
         >
@@ -111,46 +134,49 @@ export default function AdminProduct() {
         </button>
       </div>
 
-      {isUpdateModalOpen && (
+      {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg w-[600px] relative">
             <button
-              onClick={() => setIsUpdateModalOpen(false)}
+              onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-2 text-black"
             >
               ✖
             </button>
-            <h3 className="text-lg font-bold text-black mb-4">
-              Update Product
-            </h3>
+            <h3 className="text-lg font-bold text-black mb-4">Add Product</h3>
             <div className="grid grid-cols-2 gap-4">
+              <input
+                type="file"
+                className="w-full border px-3 py-2 mb-4"
+                onChange={handleFileChange}
+              />
               <input
                 type="text"
                 placeholder="Product Name"
                 className="border px-3 py-2"
-                value={updateProduct.name}
+                value={products.name}
                 onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, name: e.target.value })
+                  setProducts({ ...products, name: e.target.value })
                 }
               />
               <input
                 type="text"
                 placeholder="Description"
                 className="border px-3 py-2"
-                value={updateProduct.description}
+                value={products.description}
                 onChange={(e) =>
-                  setUpdateProduct({
-                    ...updateProduct,
+                  setProducts({
+                    ...products,
                     description: e.target.value,
                   })
                 }
               />
               <select
                 className="border px-3 py-2"
-                value={updateProduct.category || ""}
+                value={products.category || ""}
                 onChange={(e) =>
-                  setUpdateProduct({
-                    ...updateProduct,
+                  setProducts({
+                    ...products,
                     category: e.target.value,
                   })
                 }
@@ -162,32 +188,24 @@ export default function AdminProduct() {
                   </option>
                 ))}
               </select>
-              <input
-                type="number"
-                placeholder="Rating"
-                className="border px-3 py-2"
-                value={updateProduct.rating}
-                onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, rating: e.target.value })
-                }
-              />
+
               <input
                 type="number"
                 placeholder="Price"
                 className="border px-3 py-2"
-                value={updateProduct.price}
+                value={products.price}
                 onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, price: e.target.value })
+                  setProducts({ ...products, price: e.target.value })
                 }
               />
               <input
                 type="number"
                 placeholder="Discount"
                 className="border px-3 py-2"
-                value={updateProduct.discount}
+                value={products.discount}
                 onChange={(e) =>
-                  setUpdateProduct({
-                    ...updateProduct,
+                  setProducts({
+                    ...products,
                     discount: e.target.value,
                   })
                 }
@@ -196,21 +214,23 @@ export default function AdminProduct() {
                 type="text"
                 placeholder="Size"
                 className="border px-3 py-2"
-                value={updateProduct.size}
+                value={products.size}
                 onChange={(e) =>
-                  setUpdateProduct({ ...updateProduct, size: e.target.value })
+                  setProducts({ ...products, size: e.target.value })
                 }
               />
             </div>
             <button
               className="w-full bg-black text-pink-300 py-2 rounded mt-4"
-              onClick={handleUpdateProduct}
+              onClick={handleAddProduct}
+              disabled={loading}
             >
-              Update
+              Submit
             </button>
           </div>
         </div>
       )}
+
       <div className="w-full max-h-[400px] overflow-y-auto bg-white rounded shadow-md text-black">
         <table className="w-full">
           <thead>
@@ -242,16 +262,10 @@ export default function AdminProduct() {
                 <td className="py-2 px-4">{product.description}</td>
                 <td className="py-2 px-4">{product.category?.name}</td>
                 <td className="py-2 px-4">{product.rating}</td>
-                <td className="py-2 px-4">${product.price}</td>
+                <td className="py-2 px-4">Rs{product.price}</td>
                 <td className="py-2 px-4">{product.discount}%</td>
                 <td className="py-2 px-4">{product.size}</td>
                 <td className="py-2 px-4 text-right">
-                  <button
-                    className="text-blue-500 px-2"
-                    onClick={() => handleEditProduct(product)}
-                  >
-                    ✎
-                  </button>
                   <button
                     className="text-red-500 px-2"
                     onClick={() => handleDeleteProduct(product._id)}

@@ -59,9 +59,6 @@ const NavbarBase = () => {
           <span className="text-xl hover:text-pink-400 cursor-pointer">
             <CiSearch size={25} />
           </span>
-          <span className="text-xl hover:text-pink-400 cursor-pointer">
-            <CiHeart size={25} />
-          </span>
 
           {/* Cart Button - Opens Cart Sidebar */}
           <span

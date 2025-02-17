@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [sizeFilter, setSizeFilter] = useState("");
-  const [priceRange, setPriceRange] = useState([10, 400]);
+  const [priceRange, setPriceRange] = useState([10, 1000]);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("default");
   const [ratings, setRatings] = useState({});

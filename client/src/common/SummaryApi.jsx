@@ -70,7 +70,7 @@ export const SummaryApi = {
     method: "get",
   },
   updateOrderStatus: {
-    getUrl: (orderId) => `/api/order/orders/${orderId}/status`,
+    url: "/api/order/update",
     method: "put",
   },
   getcart: {
@@ -92,5 +92,13 @@ export const SummaryApi = {
   deleteworkshop: {
     url: "/api/workshop/delete-workshop",
     method: "delete",
+  },
+  PlaceOrder: {
+    url: "/api/order/add-order",
+    method: "post",
+  },
+  trackOrder: {
+    url: "/api/order/track",
+    method: "post",
   },
 };

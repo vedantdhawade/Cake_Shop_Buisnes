@@ -9,7 +9,7 @@ const UserLayout = () => {
       {/* Sidebar */}
       <div className="w-1/4 bg-pink-100 shadow-lg p-5">
         <h2 className="text-xl font-bold mb-4 border border-black  hidden md:block p-4 rounded-md">
-          <Link to={"updateprofile"}>Manage Account</Link>
+          <Link to={"/"}>Manage Account</Link>
         </h2>
         <ul className="space-y-3">
           <li

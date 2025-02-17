@@ -90,7 +90,12 @@ const Home = () => {
               <h1 className="text-4xl font-bold text-black mt-4">
                 Quality Products <br /> Bakery Items
               </h1>
-              <button className="relative overflow-hidden my-4 px-6 py-3 text-white bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group">
+              <button
+                onClick={() => {
+                  navigate("shop");
+                }}
+                className="relative overflow-hidden my-4 px-6 py-3 text-white bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group"
+              >
                 <span className="relative z-10">Shop Now</span>
                 <span className="absolute left-0 top-0 w-0 h-full bg-[#2b4174] transition-all duration-500 group-hover:w-full"></span>
               </button>
@@ -110,6 +115,9 @@ const Home = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {categories.map((category, index) => (
                 <div
+                  onClick={() => {
+                    navigate("shop");
+                  }}
                   key={index}
                   className="bg-white p-4 rounded-lg shadow-lg text-center transform transition-all hover:scale-105"
                 >
@@ -144,7 +152,12 @@ const Home = () => {
               <h2 className="text-3xl text-black font-extrabold mt-2">
                 Best Quality <br /> Products
               </h2>
-              <button className="relative overflow-hidden mt-4 px-6 py-3 bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group">
+              <button
+                onClick={() => {
+                  navigate("shop");
+                }}
+                className="relative overflow-hidden mt-4 px-6 py-3 bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group"
+              >
                 <span className="relative z-10 text-white">Shop Now</span>
                 <span className="absolute left-0 top-0 w-0 h-full bg-[#2b4174] transition-all duration-500 group-hover:w-full"></span>
               </button>
@@ -164,7 +177,12 @@ const Home = () => {
               <h2 className="text-3xl text-black font-extrabold mt-2">
                 Hot & Spicy <br /> Pastry
               </h2>
-              <button className="relative overflow-hidden mt-4 px-6 py-3 bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group">
+              <button
+                onClick={() => {
+                  navigate("shop");
+                }}
+                className="relative overflow-hidden mt-4 px-6 py-3 bg-[#fc7c7c] font-bold rounded-lg transition-all duration-500 group"
+              >
                 <span className="relative z-10 text-white">Shop Now</span>
                 <span className="absolute left-0 top-0 w-0 h-full bg-[#2b4174] transition-all duration-500 group-hover:w-full"></span>
               </button>
@@ -196,13 +214,28 @@ const Home = () => {
 
                     {/* Hover Buttons (Hidden by default, slide up on hover) */}
                     <div className="absolute bottom-[-60px] left-1/2 transform -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 group-hover:bottom-4 transition-all duration-300">
-                      <button className="p-2 bg-white shadow-md rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300">
+                      <button
+                        onClick={() => {
+                          navigate("shop");
+                        }}
+                        className="p-2 bg-white shadow-md rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300"
+                      >
                         <FaShoppingCart size={18} />
                       </button>
-                      <button className="p-2 bg-white shadow-md rounded-md hover:bg-red-500 hover:text-white transition-all duration-300">
+                      <button
+                        onClick={() => {
+                          navigate("shop");
+                        }}
+                        className="p-2 bg-white shadow-md rounded-md hover:bg-red-500 hover:text-white transition-all duration-300"
+                      >
                         <FaHeart size={18} />
                       </button>
-                      <button className="p-2 bg-white shadow-md rounded-md hover:bg-green-500 hover:text-white transition-all duration-300">
+                      <button
+                        onClick={() => {
+                          navigate("shop");
+                        }}
+                        className="p-2 bg-white shadow-md rounded-md hover:bg-green-500 hover:text-white transition-all duration-300"
+                      >
                         <FaEye size={18} />
                       </button>
                     </div>
@@ -243,7 +276,12 @@ const Home = () => {
                     <p className="text-gray-500 mt-2 text-sm line-clamp-3">
                       {blog.body.slice(0, 100)}...
                     </p>
-                    <button className="absolute bottom-4 right-4 bg-white border-2 border-[#fc7c7c] p-3 rounded-full shadow-md hover:bg-[#fc7c7c] hover:text-white transition">
+                    <button
+                      onClick={() => {
+                        navigate("/blogs/allblog");
+                      }}
+                      className="absolute bottom-4 right-4 bg-white border-2 border-[#fc7c7c] p-3 rounded-full shadow-md hover:bg-[#fc7c7c] hover:text-white transition"
+                    >
                       →
                     </button>
                   </div>

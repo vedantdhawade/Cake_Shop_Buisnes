@@ -105,7 +105,7 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   const { id } = req.body;
   try {
-    const data = await Productmodel.findByIdAndDelete({ id });
+    const data = await Productmodel.findByIdAndDelete(id);
     if (!data) {
       return res.status(400).json({
         message: "No product deleted",

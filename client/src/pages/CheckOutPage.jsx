@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
-
+import toast from "react-hot-toast";
 import {
   Elements,
   CardElement,
@@ -12,8 +12,7 @@ import {
 import Axios from "../utils/Axios";
 import { SummaryApi } from "../common/SummaryApi";
 
-const stripePromise = loadStripe("your-public-key-here"); // Replace with your Stripe public key
-
+const stripePromise = loadStripe("public-key");
 const CheckoutForm = ({ userId, cartItems, totalPrice, userAddress }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -25,34 +24,28 @@ const CheckoutForm = ({ userId, cartItems, totalPrice, userAddress }) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
     try {
-      // Create Payment Intent
-      const { data } = await Axios.post("/api/payment/create-payment-intent", {
-        amount: totalPrice * 100,
-      });
-
-      // Confirm Payment
-      const result = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
+      console.log(userId, cartItems, totalPrice, userAddress);
+      const response = await Axios({
+        ...SummaryApi.PlaceOrder,
+        data: {
+          customerName: userId,
+          address: userAddress,
+          orderItems: cartItems,
+          totalPrice: totalPrice,
         },
       });
-
-      if (result.error) {
-        setError(result.error.message);
+      if (!response) {
+        toast.error("Try Again Later");
       } else {
-        if (result.paymentIntent.status === "succeeded") {
-          alert("Payment Successful! Order Placed.");
-          navigate("/orders"); // Redirect to orders page
-        }
+        toast.success("Order Placed");
+        alert(`Your orderId is :- ${response.data.id}`);
+        navigate("/");
       }
     } catch (error) {
-      console.error("Payment error:", error);
-      setError("Payment failed. Please try again.");
-    } finally {
-      setLoading(false);
+      console.log("Error in Checkout : ", error);
     }
+    setLoading(false);
   };
 
   return (
@@ -70,7 +63,7 @@ const CheckoutForm = ({ userId, cartItems, totalPrice, userAddress }) => {
         disabled={!stripe || loading}
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
       >
-        {loading ? "Processing..." : `Pay ₹${totalPrice}`}
+        {`Pay ₹${totalPrice}`}
       </button>
     </form>
   );
@@ -78,11 +71,9 @@ const CheckoutForm = ({ userId, cartItems, totalPrice, userAddress }) => {
 
 const CheckoutPage = () => {
   const user = useSelector((state) => state.user);
-
+  const [userAddress, setUserAddress] = useState("");
   const [cartItems, setCartItems] = useState([]);
-  const [userAddress, setUserAddress] = useState(
-    "A-02 , Amruth Apt Sec-76 , plot - 12 , 41209"
-  );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,14 +84,13 @@ const CheckoutPage = () => {
           data: { userId: user._id },
         });
         setCartItems(response.data.cartItems);
-
-        setUserAddress("A-504,ananwhfuih");
       } catch (error) {
         console.error("Error fetching checkout details:", error);
       }
     };
 
     fetchDetails();
+    console.log(cartItems);
   }, []);
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
@@ -115,16 +105,16 @@ const CheckoutPage = () => {
           <h3 className="text-lg font-semibold text-gray-800">
             Shipping Address
           </h3>
-          {userAddress ? (
-            <p className="text-gray-600 mt-2">{userAddress}</p>
-          ) : (
-            <input
-              type="text"
-              placeholder="Enter your address"
-              className="w-full p-2 border rounded mt-2"
-              onChange={(e) => setUserAddress(e.target.value)}
-            />
-          )}
+
+          <input
+            type="text"
+            required
+            placeholder="Enter your address"
+            className="w-full p-2 border rounded mt-2"
+            onChange={(e) => {
+              setUserAddress(e.target.value);
+            }}
+          />
         </div>
 
         {/* Cart Items Section */}
@@ -151,7 +141,7 @@ const CheckoutPage = () => {
         {/* Stripe Payment */}
         <Elements stripe={stripePromise}>
           <CheckoutForm
-            userId={user._id}
+            userId={user.firstname}
             cartItems={cartItems}
             totalPrice={totalPrice}
             userAddress={userAddress}

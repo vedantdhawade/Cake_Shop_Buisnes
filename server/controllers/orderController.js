@@ -12,8 +12,7 @@ export const getOrders = async (req, res) => {
 
 export const updateOrderStatus = async (req, res) => {
   try {
-    const { orderId } = req.params;
-    const { status } = req.body;
+    const { status, orderId } = req.body;
 
     if (!["Pending", "Accepted", "Dispatched", "Delivered"].includes(status)) {
       return res
@@ -45,67 +44,54 @@ export const updateOrderStatus = async (req, res) => {
       .json({ success: false, message: "Failed to update order status" });
   }
 };
-
 export const addOrder = async (req, res) => {
+  const { customerName, address, orderItems, totalPrice } = req.body;
   try {
-    const {
+    const data = new Order({
       customerName,
-      email,
-      phone,
       address,
       orderItems,
       totalPrice,
-      status,
-    } = req.body;
-
-    // Validate required fields
-    if (
-      !customerName ||
-      !email ||
-      !phone ||
-      !address ||
-      !orderItems ||
-      !totalPrice
-    ) {
+    });
+    const newOrder = await data.save();
+    if (!newOrder) {
       return res.status(400).json({
+        message: "No Order Placed",
         success: false,
-        message:
-          "Missing required fields: customerName, email, phone, address, orderItems, or totalPrice",
+        error: true,
+      });
+    } else {
+      return res.status(200).json({
+        message: "Order Placed",
+        success: true,
+        error: false,
+        id: newOrder._id,
       });
     }
-
-    // Validate orderItems (it should be an array of objects)
-    if (!Array.isArray(orderItems) || orderItems.length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "orderItems should be a non-empty array",
-      });
-    }
-
-    // Create a new order
-    const newOrder = new Order({
-      customerName,
-      email,
-      phone,
-      address,
-      orderItems,
-      totalPrice,
-      status: status || "Pending", // Default status is Pending
-    });
-
-    // Save the order to the database
-    const savedOrder = await newOrder.save();
-
-    res.status(201).json({
-      success: true,
-      message: "Order added successfully",
-      data: savedOrder,
-    });
   } catch (error) {
-    console.error("Error adding order:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to add order",
-    });
+    console.log("Error in add Products : ", error);
+  }
+};
+
+export const trackorder = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await Order.findById(id);
+    if (!data) {
+      return res.status(400).json({
+        message: "Invalid OrderId",
+        success: false,
+        error: true,
+      });
+    } else {
+      return res.status(200).json({
+        message: "Order Tracked",
+        success: true,
+        error: false,
+        data: data.status,
+      });
+    }
+  } catch (error) {
+    console.log("Error in track order Controller : ", error);
   }
 };
