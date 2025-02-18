@@ -32,7 +32,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center w-full">
         {/* Left Side */}
         <p className="text-md text-center sm:text-left hidden lg:block">
-          World Wide Completely Free Returns and Free Shipping
+          <Link to={"/"}>
+            World Wide Completely Free Returns and Free Shipping
+          </Link>
         </p>
 
         {/* Right Side */}
@@ -40,7 +42,7 @@ export default function Navbar() {
           <p className="cursor-pointer">+1 234 567 890</p>
           <span className="hidden sm:block text-pink-400">|</span>
           <p className="hover:text-pink-400 cursor-pointer">
-            support@example.com
+            <Link to={"feedback"}>support@example.com</Link>
           </p>
           <span className="hidden sm:block text-pink-400">|</span>
 

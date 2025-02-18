@@ -101,4 +101,12 @@ export const SummaryApi = {
     url: "/api/order/track",
     method: "post",
   },
+  getfeedbacks: {
+    url: "/api/feedback/get-feedback",
+    method: "get",
+  },
+  addfeedback: {
+    url: "/api/feedback/add-feedback",
+    method: "post",
+  },
 };

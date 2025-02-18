@@ -21,18 +21,24 @@ import CheckoutPage from "../pages/CheckOutPage";
 import WorkshopPage from "../pages/WorkShop";
 import FeedbackPage from "../pages/Feedback";
 import UserWorkshopPage from "../pages/UserWorkshopPage";
+import FeedbackForm from "../components/feedbackform";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "*",
+        element: <h1>Not found</h1>,
+      },
       { path: "", element: <Home /> },
       { path: "about", element: <AboutUs /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "shop", element: <ProductsPage /> },
       { path: "workshop", element: <UserWorkshopPage /> },
+      { path: "feedback", element: <FeedbackForm /> },
 
       {
         path: "blogs",
