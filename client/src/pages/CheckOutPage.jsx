@@ -40,7 +40,7 @@ const CheckoutForm = ({ userId, cartItems, totalPrice, userAddress }) => {
       } else {
         toast.success("Order Placed");
         alert(`Your orderId is :- ${response.data.id}`);
-        navigate("/");
+        navigate("/feedback");
       }
     } catch (error) {
       console.log("Error in Checkout : ", error);

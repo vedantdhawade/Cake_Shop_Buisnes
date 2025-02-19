@@ -112,19 +112,19 @@ const NavbarBase = () => {
                 className="relative cursor-pointer flex justify-center"
                 onClick={toggleMobileMenu}
               >
-                SHOP
+                <Link to={"/shop"}>SHOP</Link>
               </li>
               <li
                 className="hover:text-pink-400 cursor-pointer flex justify-center"
                 onClick={toggleMobileMenu}
               >
-                BLOG
+                <Link to={"/blogs/allblog"}>BLOGS</Link>
               </li>
               <li
                 className="hover:text-pink-400 cursor-pointer flex justify-center"
                 onClick={toggleMobileMenu}
               >
-                WORKSHOPS
+                <Link to={"/workshop"}>WORKSHOP</Link>
               </li>
             </ul>
           </div>
