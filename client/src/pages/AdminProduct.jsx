@@ -33,6 +33,11 @@ export default function AdminProduct() {
     const response = await uploadImage(image);
     if (response.data.success) {
       toast.success(response.data.message);
+      setProducts({
+        ...products, // Spread existing product state
+        image: response.data.url, // Assign image URL
+      });
+
       setLoading(false);
     }
     setLoading(false);
