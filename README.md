@@ -1,49 +1,88 @@
-# Cake_Shop_Buisnes
+# 🍰 Cake Shop Management System  
 
-1 >> vscode > file > open folder > downloads > cakeshop > cakeshop > jeva client and server disel teva open
+A full-fledged Cake Shop Management System built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) that allows users to browse, order, and manage cakes efficiently. The system includes an admin panel for product management and integrates secure payment options.  
 
-server -> backend
-client -> frontend
-terminal -> client README.md server > cd server
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes$ ls
-client README.md server
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes$ cd server
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes/server$ npm run dev
+## 🚀 Features  
 
-> server@1.0.0 dev
-> nodemon server.js
+### 🎂 Customer Features  
+- Browse cakes with images, descriptions, and prices  
+- Add cakes to the cart and proceed with a secure checkout  
+- Apply discount codes and offers  
+- Order tracking with real-time status updates  
+- User authentication (Signup/Login)  
+- Payment gateway integration  
 
-[nodemon] 3.1.9
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): _._
-[nodemon] watching extensions: js,mjs,cjs,json
-[nodemon] starting `node server.js`
-mongoDB Connected
-Server is running on http://localhost:5000
+### 🛠 Admin Features  
+- Add, edit, and delete cake products  
+- Manage categories and pricing  
+- View and process orders  
+- Dashboard with sales analytics  
 
-path :- /Cake_Shop_Buisnes/server > (npm run dev) -> runs or starts the server
+## 🏗️ Technologies Used  
 
-2 >> #start the client
-terminal -> client README.md server >> cd client
+### 🌐 Frontend  
+- **React.js** – Dynamic and responsive UI  
+- **Tailwind CSS** – Modern styling for a sleek design  
+- **Bootstrap** – Ensuring mobile-first design  
 
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes$ ls
-client README.md server
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes$ cd client
-vedant@vedant-Lenovo-G50-80:~/Desktop/Cake-Shop/Cake_Shop_Buisnes/client$ npm run dev
+### 🖥️ Backend  
+- **Node.js** – Server-side runtime  
+- **Express.js** – Lightweight API framework  
 
-> client@0.0.0 dev
-> vite
+### 🗄️ Database  
+- **MongoDB** – NoSQL database for storing products and orders  
 
-VITE v6.0.11 ready in 1655 ms
+### 🔒 Additional Integrations  
+- **Cloudinary** – Image upload and storage  
+- **Stripe/PayPal** – Payment gateway  
+- **JWT Authentication** – Secure login and access control  
 
-➜ Local: http://localhost:5173/
-➜ Network: use --host to expose
-➜ press h + enter to show help
+## 📦 Installation  
 
-3 >> Browser open paste the link (chrome)
+```sh
+# 1️⃣ Clone the repository  
+git clone https://github.com/vedantdhawade/cake-shop.git  
+cd cake-shop  
 
-setup database -> https://account.mongodb.com/account/register
+# 2️⃣ Install dependencies  
 
-language javascript / node js
+## Backend  
+cd server 
+npm install  
 
-project --> add new prject -> create project -> create -> free -> create deployment
+## Frontend  
+cd client  
+npm install  
+
+# 3️⃣ Configure Environment Variables  
+# Create a `.env` file in the backend directory and add:  
+MONGO_URI=your_mongodb_connection_string  
+JWT_SECRET=your_jwt_secret_key  
+CLOUDINARY_URL=your_cloudinary_api_url  
+STRIPE_SECRET_KEY=your_stripe_secret_key  
+
+# 4️⃣ Start the Application  
+
+## Backend  
+npm run dev  
+
+## Frontend  
+npm run dev  
+```
+
+## 📌 Future Enhancements  
+- AI-powered cake recommendations  
+- Mobile app for better accessibility  
+- Live cake customization feature  
+- Subscription-based plans for frequent buyers  
+
+## 🤝 Contributing  
+Contributions are welcome! Feel free to fork this repo, raise issues, or submit pull requests.  
+
+ Output :- 
+ Home
+ 
+
+---
+
+🌟 **Enjoy managing your cake shop seamlessly!** 🍰🎉
