@@ -91,4 +91,4 @@ Contributions are welcome! Feel free to fork this repo, raise issues, or submit 
 ![Shopping Cart](https://github.com/vedantdhawade/Cake_Shop_Buisnes/blob/main/Screenshot%20from%202025-02-24%2020-22-30.png?raw=true)
 ---
 
-🌟 **Enjoy managing your cake shop seamlessly!** 🍰🎉
+🌟 **Enjoy managing the cake shop seamlessly!** 🍰🎉
