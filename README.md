@@ -79,10 +79,16 @@ npm run dev
 ## 🤝 Contributing  
 Contributions are welcome! Feel free to fork this repo, raise issues, or submit pull requests.  
 
- Output :- 
- Home
- 
+## **📸 Screenshots**
 
+### **Home Page**
+![Home Page](https://github.com/vedantdhawade/Cake_Shop_Buisnes/blob/main/Screenshot%20from%202025-02-24%2020-20-41.png)  
+### **Products Page**
+![Products Page](https://github.com/vedantdhawade/Cake_Shop_Buisnes/blob/main/Screenshot%20from%202025-02-24%2020-21-03.png?raw=true)  
+### **Admin Page**
+![Admin Page](https://github.com/vedantdhawade/Cake_Shop_Buisnes/blob/main/Screenshot%20from%202025-02-24%2020-21-39.png?raw=true)
+ ### **Shopping Cart**
+![Shopping Cart](https://github.com/vedantdhawade/Cake_Shop_Buisnes/blob/main/Screenshot%20from%202025-02-24%2020-22-30.png?raw=true)
 ---
 
 🌟 **Enjoy managing your cake shop seamlessly!** 🍰🎉
